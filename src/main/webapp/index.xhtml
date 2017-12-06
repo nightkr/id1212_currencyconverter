@@ -7,24 +7,25 @@
   <h:head>
   </h:head>
   <h:body>
-    <h:form>
+    <h:form id="converter">
       <c:if test="#{viewBacking.targetFailed}">
-        <div>
-          #{viewBacking.targetError}
-        </div>
+        <div>#{viewBacking.targetError}</div>
       </c:if>
       <div>
-        <h:inputText value="#{viewBacking.sourceAmount}"/>
-        <h:selectOneMenu required="true" value="#{viewBacking.sourceCurrency}">
-          <f:selectItems value="#{viewBacking.currencies}" var="currency" itemLabel="#{currency.name}" itemValue="#{currency.id}"/>
+        <h:inputText id="sourceAmount" value="#{viewBacking.sourceAmount}">
+          <f:ajax render=":converter"/>
+        </h:inputText>
+        <h:selectOneMenu required="true" id="sourceCurrency" value="#{viewBacking.sourceCurrency}">
+          <f:selectItems value="#{viewBacking.sourceCurrencies}" var="currency" itemLabel="#{currency.name}" itemValue="#{currency.id}"/>
+          <f:ajax render=":converter"/>
         </h:selectOneMenu>
         →
         <h:outputText value="#{viewBacking.targetAmount}" rendered="#{viewBacking.targetCalculated}"/>
-        <h:selectOneMenu required="true" value="#{viewBacking.targetCurrency}">
-          <f:selectItems value="#{viewBacking.currencies}" var="currency" itemLabel="#{currency.name}" itemValue="#{currency.id}"/>
+        <h:selectOneMenu required="true" id="targetCurrency" value="#{viewBacking.targetCurrency}">
+          <f:selectItems value="#{viewBacking.targetCurrencies}" var="currency" itemLabel="#{currency.name}" itemValue="#{currency.id}"/>
+          <f:ajax render=":converter"/>
         </h:selectOneMenu>
       </div>
-      <h:commandButton value="Submit" actionListener="#{viewBacking.formSubmitted}"/>
     </h:form>
   </h:body>
 </html>

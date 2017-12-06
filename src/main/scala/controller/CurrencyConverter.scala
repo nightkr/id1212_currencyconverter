@@ -13,9 +13,20 @@ class CurrencyConverter {
   @PersistenceContext
   private var entityManager: EntityManager = _
 
-  def currencies: Seq[Currency] =
+  def sourceCurrencies: Seq[Currency] =
     entityManager
-      .createQuery("from Currency", classOf[Currency])
+      .createQuery("select distinct rate.from from ExchangeRate rate",
+                   classOf[Currency])
+      .getResultList
+      .asScala
+      .toSeq
+
+  def targetCurrencies(from: Long): Seq[Currency] =
+    entityManager
+      .createQuery(
+        "select distinct rate.to from ExchangeRate rate where rate.from.id = ?",
+        classOf[Currency])
+      .setParameter(0, from)
       .getResultList
       .asScala
       .toSeq
