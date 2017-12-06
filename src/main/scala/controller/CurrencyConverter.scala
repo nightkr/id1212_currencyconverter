@@ -44,6 +44,6 @@ class CurrencyConverter {
         .getResultList
         .asScala
         .headOption
-      rate.map(rate => amount / rate.ratio)
+      rate.map(rate => amount / rate.price)
     }
 }

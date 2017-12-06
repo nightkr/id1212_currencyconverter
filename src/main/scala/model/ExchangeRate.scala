@@ -16,5 +16,5 @@ class ExchangeRate {
   var to: Currency = _
 
   @BeanProperty
-  var ratio: Double = _
+  var price: Double = _
 }
