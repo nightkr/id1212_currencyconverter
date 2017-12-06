@@ -1,0 +1,30 @@
+<!DOCTYPE xhtml>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  <h:head>
+  </h:head>
+  <h:body>
+    <h:form>
+      <c:if test="#{viewBacking.targetFailed}">
+        <div>
+          #{viewBacking.targetError}
+        </div>
+      </c:if>
+      <div>
+        <h:inputText value="#{viewBacking.sourceAmount}"/>
+        <h:selectOneMenu required="true" value="#{viewBacking.sourceCurrency}">
+          <f:selectItems value="#{viewBacking.currencies}" var="currency" itemLabel="#{currency.name}" itemValue="#{currency.id}"/>
+        </h:selectOneMenu>
+        →
+        <h:outputText value="#{viewBacking.targetAmount}" rendered="#{viewBacking.targetCalculated}"/>
+        <h:selectOneMenu required="true" value="#{viewBacking.targetCurrency}">
+          <f:selectItems value="#{viewBacking.currencies}" var="currency" itemLabel="#{currency.name}" itemValue="#{currency.id}"/>
+        </h:selectOneMenu>
+      </div>
+      <h:commandButton value="Submit" actionListener="#{viewBacking.formSubmitted}"/>
+    </h:form>
+  </h:body>
+</html>
