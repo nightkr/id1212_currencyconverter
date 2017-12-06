@@ -14,13 +14,14 @@
       <div>
         <h:inputText id="sourceAmount" value="#{viewBacking.sourceAmount}">
           <f:ajax render=":converter"/>
+          <f:ajax event="keyup" render=":converter:targetAmount"/>
         </h:inputText>
         <h:selectOneMenu required="true" id="sourceCurrency" value="#{viewBacking.sourceCurrency}">
           <f:selectItems value="#{viewBacking.sourceCurrencies}" var="currency" itemLabel="#{currency.name}" itemValue="#{currency.id}"/>
           <f:ajax render=":converter"/>
         </h:selectOneMenu>
         →
-        <h:outputText value="#{viewBacking.targetAmount}" rendered="#{viewBacking.targetCalculated}"/>
+        <h:outputText id="targetAmount" value="#{viewBacking.targetAmount}" rendered="#{viewBacking.targetCalculated}"/>
         <h:selectOneMenu required="true" id="targetCurrency" value="#{viewBacking.targetCurrency}">
           <f:selectItems value="#{viewBacking.targetCurrencies}" var="currency" itemLabel="#{currency.name}" itemValue="#{currency.id}"/>
           <f:ajax render=":converter"/>
