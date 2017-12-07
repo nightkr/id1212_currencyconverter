@@ -1,0 +1,12 @@
+* Installation
+
+- Install PostgreSQL (10 recommended)
+- Create a postgres user named "teo_currconv", with the password "sosecret": sudo -u postgres createuser teo_currconv --pwprompt
+- Create a database named "teo_currconv" owned by the user you just created: sudo -u postgres createdb teo_currconv --owner=teo_currconv
+- Run './sbt package'
+- Download and extract [[http://download.oracle.com/glassfish/5.0/release/glassfish-5.0-web.zip][Glassfish 5]]
+- Download the [[https://jdbc.postgresql.org/download/postgresql-42.1.4.jar][Postgres JDBC driver]], and place it in glassfish5/glassfish/lib
+- Start Glassfish by running glassfish5/glassfish/bin/startserv
+- Copy target/scala-2.12/currencyconv_2.12-0.12-SNAPSHOT.war to glassfish5/glassfish/domains/domain1/autodeploy/currconv.war
+- Wait for Glassfish to pick up the project
+- Visit [[http://localhost:8080/currconv/]]

@@ -16,3 +16,5 @@ INSERT INTO exchangerate(id, from_id, to_id, price) VALUES(8, 2, 5, 7.44);
 
 INSERT INTO exchangerate(id, from_id, to_id, price) VALUES(9, 3, 5, 1.18);
 INSERT INTO exchangerate(id, from_id, to_id, price) VALUES(10, 5, 3, 0.85);
+
+COMMIT;

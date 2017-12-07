@@ -2,6 +2,8 @@
 <resources>
   <jdbc-resource enabled="true" jndi-name="jdbc/teo_currconv" pool-name="teo_currconv"/>
   <jdbc-connection-pool name="teo_currconv" driver-classname="org.postgresql.Driver" res-type="java.sql.Driver">
+    <property name="User" value="teo_currconv"/>
+    <property name="Password" value="sosecret"/>
     <property name="URL" value="jdbc:postgresql:///teo_currconv"/>
   </jdbc-connection-pool>
 </resources>
